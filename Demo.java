@@ -6,14 +6,24 @@ package hwSL;
 public class Demo {
     public static void main(String[] args) throws Exception {
         SL_File slf = new SL_File();
-        demo(slf);
+//        System.out.println(slf.size());
+//        demo(slf);
 
-        slf.add("Proverka");
-        slf.add("Proverka_2");
-        slf.add("Proverka_3");
-        slf.add(new Zaglushka());
-
-        System.out.println("size = " + slf.size());
+//        slf.add("Proverka");
+//        slf.add("Proverka_2");
+//        slf.add("Proverka_3");
+//        slf.add(new Zaglushka());
+//        System.out.println(slf.getCounter(5));
+//        for (Object o: slf){
+//
+//        }
+        while (slf.iterator().hasNext()){
+            System.out.println(slf.iterator().next());
+        }
+//        System.out.println(slf.iterator().next());
+//        System.out.println();
+//
+//        System.out.println("size = " + slf.size());
 
     }
 

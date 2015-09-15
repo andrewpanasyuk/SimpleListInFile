@@ -10,7 +10,8 @@ public class SL_File implements SimpleList {
     private long lastPosition;
     private File list;
     private File list_temp;
-
+    private int size;
+    private int count = 0;
 
 
     public SL_File() throws Exception {
@@ -20,6 +21,7 @@ public class SL_File implements SimpleList {
             //lastPosition = 0;
         }
         //lastPosition = lastPoint();
+        size = size();
 
     }
 
@@ -65,6 +67,7 @@ public class SL_File implements SimpleList {
 
                         raf.seek(startpoint);
                         raf.writeBytes(string);
+
                         flagRec = true;
 
 
@@ -97,7 +100,7 @@ public class SL_File implements SimpleList {
 
             }
         }
-
+        size = size();
 
     }
 
@@ -125,6 +128,42 @@ public class SL_File implements SimpleList {
         }
 
         return false;
+    }
+
+    public Object getCounter(int counter) {
+        RandomAccessFile raf = null;
+        Object object = null;
+        try {
+            raf = new RandomAccessFile(list, "r");
+            String s;
+            int n = 0;
+            while ((s = raf.readLine()) != null) {
+                if (n == counter) {
+                    object = s;
+                }
+                n++;
+            }
+            if (object == null) {
+                try {
+                    throw new Exception("position not found");
+                } catch (Exception newExeption) {
+                    newExeption.printStackTrace();
+                }
+
+            }
+
+
+        } catch (IOException io) {
+
+        } finally {
+            try {
+                raf.close();
+            } catch (IOException i) {
+
+            }
+
+        }
+        return object;
     }
 
     @Override
@@ -203,18 +242,25 @@ public class SL_File implements SimpleList {
     }
 
     class FileIterator implements Iterator {
+       private int counter = count;
+        private Object nextObject = null;
 
 
         @Override
         public boolean hasNext() {
-
-            return false;
+            return (counter < size());
         }
 
         @Override
         public Object next() {
 
-            return null;
+            if (nextObject == null) {
+                nextObject = getCounter(counter);
+            } else if (hasNext()) {
+                nextObject = getCounter(count + 1);
+            }
+            count++;
+            return nextObject;
         }
     }
 }
