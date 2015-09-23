@@ -18,9 +18,7 @@ public class SL_File implements SimpleList {
         list = new File("list.txt");
         if (!list.exists()) {
             list.createNewFile();
-            //lastPosition = 0;
         }
-        //lastPosition = lastPoint();
         size = size();
 
     }
@@ -52,13 +50,11 @@ public class SL_File implements SimpleList {
             try {
                 raf = new RandomAccessFile(list, "rw");
                 String s;
-//                long startPosCurrentLine = 0;
                 lastPosition = 0;
                 while ((s = raf.readLine()) != null) {
                     if (s.length() == 0) {
 
                         long carrentLongFile = raf.length();
-//                        long startpoint = startPosCurrentLine;
                         long startpoint = lastPosition;
                         raf.seek(raf.getFilePointer());
 

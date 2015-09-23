@@ -1,33 +1,22 @@
 package hwSL;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by panasyuk on 12.09.2015.
  */
 public class Demo {
-    public static void main(String[] args) throws Exception {
-        SL_File slf = new SL_File();
-//        System.out.println(slf.size());
-//        demo(slf);
+    public static void main(String[] args) throws Exception, ArithmeticException {
+       SL_File_New slfn = new SL_File_New();
+        //demo(slfn);
+        System.out.println(slfn.size());
 
-//        slf.add("Proverka");
-//        slf.add("Proverka_2");
-//        slf.add("Proverka_3");
-//        slf.add(new Zaglushka());
-//        System.out.println(slf.getCounter(5));
-//        for (Object o: slf){
-//
-//        }
-        while (slf.iterator().hasNext()){
-            System.out.println(slf.iterator().next());
-        }
-//        System.out.println(slf.iterator().next());
-//        System.out.println();
-//
-//        System.out.println("size = " + slf.size());
+
 
     }
 
-    public static void demo(SL_File slf) throws Exception{
+    public static void demo(SL_File_New slf) throws Exception{
         slf.add(1);
         slf.add(2);
         slf.add(3);
@@ -38,5 +27,7 @@ public class Demo {
         slf.add(8);
         slf.remove(2);
         slf.remove(6);
+        slf.add(88);
+
     }
 }
